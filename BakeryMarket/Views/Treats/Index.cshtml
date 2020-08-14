@@ -1,0 +1,34 @@
+@{
+  Layout = "_Layout";
+}
+
+@using BakeryMarket.Models
+@using System.Security.Claims
+@model IEnumerable<BakeryMarket.Models.Treat>
+
+<h2>All treats</h2>
+
+@if (Model.Any())
+{
+  <ul>
+    @foreach (Treat treat in Model)
+    {
+      <li>@Html.ActionLink($"{treat.Name}", "Details", new { id = treat.TreatId })</li>
+    }
+  </ul>
+}
+else
+{
+  <p>There are no treats available</p>
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+  <p>@Html.ActionLink("Add new treat", "Create")</p>
+}
+else
+{
+  <p>@Html.ActionLink("Sign in to create treats", "Login", "Account")</p>
+}
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

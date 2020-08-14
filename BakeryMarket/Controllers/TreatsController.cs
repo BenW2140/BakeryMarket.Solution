@@ -52,8 +52,8 @@ namespace BakeryMarket.Controllers
     public ActionResult Details(int id)
     {
       var thisTreat = _db.Treats
-        .Include(treat => treat.Categories)
-        .ThenInclude(join => join.Category)
+        .Include(treat => treat.Flavors)
+        .ThenInclude(join => join.Flavor)
         .Include(treat => treat.User)
         .FirstOrDefault(treat => treat.TreatId == id);
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -69,7 +69,7 @@ namespace BakeryMarket.Controllers
       var thisTreat = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(treat => treat.TreatId == id);
       if (thisTreat == null)
       {
-        return RedirectToAction("Details", new { id = id })
+        return RedirectToAction("Details", new { id = id });
       }
       ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
       return View(thisTreat);
@@ -95,7 +95,7 @@ namespace BakeryMarket.Controllers
       var thisTreat = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(treat => treat.TreatId == id);
       if (thisTreat == null)
       {
-        return RedirectToAction("Details", new { id = id })
+        return RedirectToAction("Details", new { id = id });
       }
       ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
       return View(thisTreat);
@@ -120,7 +120,7 @@ namespace BakeryMarket.Controllers
       var thisTreat = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(treat => treat.TreatId == id);
       if (thisTreat == null)
       {
-        return RedirectToAction("Details", new { id = id })
+        return RedirectToAction("Details", new { id = id });
       }
       ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
       return View(thisTreat);
@@ -140,7 +140,7 @@ namespace BakeryMarket.Controllers
     {
       var joinEntry = _db.FlavorTreat.FirstOrDefault(entry => entry.FlavorTreatId == joinId);
       _db.FlavorTreat.Remove(joinEntry);
-      _db.Savechanges();
+      _db.SaveChanges();
       return RedirectToAction("Index");
     }
   }

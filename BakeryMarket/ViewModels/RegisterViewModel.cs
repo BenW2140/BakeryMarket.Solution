@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BakeryMarket.ViewModels
 {
-  public class RegisterViewModels
+  public class RegisterViewModel
   {
     [Required]
     [EmailAddress]
