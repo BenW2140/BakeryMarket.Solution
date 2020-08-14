@@ -16,7 +16,7 @@ namespace BakeryMarket.Controllers
     private readonly BakeryMarketContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public TreatsController(UserManager<ApplicationUser> userManager, BakeryMarketContext db)
+    public FlavorsController(UserManager<ApplicationUser> userManager, BakeryMarketContext db)
     {
       _userManager = userManager;
       _db = db;
@@ -40,7 +40,7 @@ namespace BakeryMarket.Controllers
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
       flavor.User = currentUser;
-      _db.Flavors.Add(treat);
+      _db.Flavors.Add(flavor);
       if (treatId != 0)
       {
         _db.FlavorTreat.Add(new FlavorTreat() { TreatId = treatId, FlavorId = flavor.FlavorId });
@@ -93,7 +93,7 @@ namespace BakeryMarket.Controllers
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
       var thisFlavor = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(flavor => flavor.FlavorId == id);
-      if (thisTreat == null)
+      if (thisFlavor == null)
       {
         return RedirectToAction("Details", new { id = id });
       }
@@ -130,7 +130,7 @@ namespace BakeryMarket.Controllers
     public ActionResult DeleteConfirmed(int id)
     {
       var thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
-      _db.Treats.Remove(thisFlavor);
+      _db.Flavors.Remove(thisFlavor);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
