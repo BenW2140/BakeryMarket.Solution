@@ -35,3 +35,7 @@ else
   <p>@Html.ActionLink("Add an flavor", "AddFlavor", new { id = Model.TreatId })</p>
   <p>@Html.ActionLink("Delete treat", "Delete", new { id = Model.TreatId })</p>
 }
+else
+{
+  <p>@Html.ActionLink("Sign in to have full access", "Login", "Account")</p>
+}
