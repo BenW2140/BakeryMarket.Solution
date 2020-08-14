@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@using BakeryMarket.ViewModels
+@model RegisterViewModel
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Email)
+  @Html.TextBoxFor(model => model.Email)
+
+  @Html.LabelFor(model => model.Password)
+  @Html.TextBoxFor(model => model.Password)
+
+  @Html.Label("Confirm Password")
+  @Html.TextBoxFor(model => model.ConfirmPassword)
+
+  <input type="submit" value="Sign up" class="btn btn-default">
+}
+<p>@Html.ActionLink("Sign in", "Login")</p>
+<p>@Html.ActionLink("Accounts", "Index")</p>
