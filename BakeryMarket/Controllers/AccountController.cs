@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using Library.Models;
-using Library.ViewModels;
+using BakeryMarket.Models;
+using BakeryMarket.ViewModels;
 using System.Threading.Tasks;
 
 namespace BakeryMarket.Controllers
