@@ -87,6 +87,35 @@ namespace BakeryMarket.Controllers
       return RedirectToAction("Index");
     }
 
-    
+    [Authorize]
+    public async Task<ActionResult> AddFlavor(int id)
+    {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      var thisTreat = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(treat => treat.TreatId == id);
+      if (thisTreat == null)
+      {
+        return RedirectToAction("Details", new { id = id })
+      }
+      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
+      return View(thisTreat);
+    }
+
+    [HttpPost]
+    public ActionResult AddFlavor(Treat treat, int flavorId)
+    {
+      if (flavorId != 0)
+      {
+        _db.FlavorTreat.Add(new FlavorTreat() { FlavorId = flavorId, TreatId = treat.TreatId });
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    [Authorize]
+    public async Task<ActionResult> Delete(int id)
+    {
+      return View(thisTreat);
+    }
   }
 }
