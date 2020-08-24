@@ -12,15 +12,15 @@ _Allows a user to add treats and flavors to a bakery, as well as, view, edit and
 
 Setting up the database:
 
-  1. Either replace the variable in the appsettings.json file with your SQL password or create an EnvironmentVaribles.cs file in Models with this code:
-    
-    namespace BakeryMarket.Models
-    {
-      public class EnvironmentVariables
-      {
-        public static string Password = "[YOUR_SQL_PASSWORD_GOES_HERE]";
-      }
+  1. In order for this program to work you will need to create an appsettings.json file, after you do that enter this code in it:
+
+  ```{
+    "ConnectionStrings": {
+      "DefaultConnection": "Server=localhost;Port=3306;database=Animal_Shelter;uid=root;pwd={ _password_ };"
     }
+  }
+  ```
+  * Replacing password with your server password
 
   2. Then run, in your terminal, `dotnet ef database update`
 
