@@ -15,6 +15,6 @@ namespace BakeryMarket.Models
 
     public virtual ApplicationUser User { get; set; }
 
-    public virtual ICollection<FlavorTreat> Treats { get; set; }
+    public virtual ICollection<FlavorTreat> Treats { get; }
   }
 }
