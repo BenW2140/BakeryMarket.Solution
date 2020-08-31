@@ -14,9 +14,10 @@ Setting up the database:
 
   1. In order for this program to work you will need to create an appsettings.json file, after you do that enter this code in it:
 
-  ```{
+  ```
+  {
     "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;database=Animal_Shelter;uid=root;pwd={ _password_ };"
+      "DefaultConnection": "Server=localhost;Port=3306;database=bakery_market;uid=root;pwd={ _password_ };"
     }
   }
   ```
